@@ -1,0 +1,21 @@
+from bs4 import BeautifulSoup
+
+def file_open(file):
+    #파일 읽기
+    rawdata = open(file, 'r', encoding='EUC-KR' )
+
+    data = rawdata.read()
+    return data
+
+def load_content(file):
+    #뷰티풀 수프를 이용하여 beattiful soup 으로 읽어오는 과정
+    data = file_open(file)
+    soup = BeautifulSoup(data, "lxml")
+    data = soup.select('KR_OpenNumber')
+    for item in data :
+        print(item.text)
+
+
+if __name__ == '__main__':
+    file = r'C:\parser\1020150001419.xml'
+    load_content(file)

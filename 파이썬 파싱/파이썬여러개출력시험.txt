@@ -1,0 +1,97 @@
+from bs4 import BeautifulSoup
+import os
+from xml.etree.ElementTree import Element, SubElement, ElementTree, dump
+
+xml_ids=[1020150000770, 1020150001126]
+output_dir = r"C:\parser\output"
+
+for xml_id in xml_ids:
+    filename = r"C:/parser/" + str(xml_id) + ".xml"
+    output_filename = "p_{}.xml".format(xml_id)
+
+dataset=[]
+
+with open(filename, "r", encoding='EUC-KR') as f:
+    soup = BeautifulSoup(f, "lxml")
+    data1 = soup.select('KR_Name')
+    data2 = soup.select('KR_ORGName')
+    data3 = soup.select('claims')
+    dataset.append([data1, data2, data3])
+    for i in data1:
+        print(i)
+    for i in data2:
+        print(i)
+    for i in data3:
+        print(i)
+
+with open(output_filename, "w", encoding="EUC-KR") as f:
+    for data in dataset:
+        f.write("{},{},{}".format(str(data[0])[1:-1], str(data[1])[1:-1],str(data[2])[1:-1]).replace(",", "").replace(" ", ""))
+
+
+def indent(elem, level=0): 
+    i = "\n" + level*"  "
+    if len(elem):
+        if not elem or not elem.strip():
+            elem = i + "  "
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+        for elem in elem:
+            indent(elem, level+1)
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+    else:
+        if level and (not elem.tail or not elem.tail.strip()):
+            elem.tail = i
+
+'''
+1020150000770, 1020150001126, 1020150001196, 1020150001259, 1020150001419
+
+path = r'C:\parser'
+file_list = os.listdir(path)
+file_list_py = [file for file in file_list if file.endswith('.xml')]
+
+    for line in f:
+        if not line.split():
+            continue
+        tokens = line.split()
+        KR_Name = str(tokens[0])
+        KR_ORGName = str(tokens[1])
+        KR_OpenDate = str(tokens[2])
+        dataset.append([KR_Name, KR_ORGName, KR_OpenDate])
+
+def file_open(file):
+    # 파일 읽기
+    rawdata = open(file, 'r', encoding='EUC-KR')
+    data = rawdata.read()
+    return data
+
+def load_content(file):
+    # beautiful soup 으로 읽어오는 과정
+    # 순서대로 발명자, 특허권자, 공고일자, 출원번호, 공개번호, 등록일자, 등록번호, 발명의 명칭, 청구항
+    data = file_open(file)
+    soup = BeautifulSoup(data, "lxml")
+    
+    data = soup.select('KR_Name')
+
+    data = soup.select('KR_ORGName')
+
+    data = soup.select('KR_OpenDate')
+
+    data = soup.select('KR_ApplicationNumber')
+
+    data = soup.select('KR_OpenNumber')
+
+    data = soup.select('KR_ApplicationDate')
+
+    data = soup.select('KR_ApplicationNumber')
+
+    data = soup.select('KR_InventionTitle')
+
+    data = soup.select('summary')
+
+    data = soup.select('claims')
+    '''
+
+
+

@@ -1,0 +1,13 @@
+import os
+
+dir_path = "C:\parser"
+
+for (root, directories, files) in os.walk(dir_path):
+    for file in files:
+        if '.xml' in file:
+            file_path = os.path.join(root, file)
+            print(file_path)
+
+path = 'C:\parser'
+file_list = os.listdir(path)
+file_list_py = [file for file in file_list if file.endswith('.xml')]

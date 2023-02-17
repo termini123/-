@@ -1,0 +1,26 @@
+from bs4 import BeautifulSoup
+import os
+from xml.etree.ElementTree import Element, SubElement, ElementTree, dump
+
+path = 'C:\VScode'
+file_list = os.listdir(path)
+file_list_py = [file for file in file_list if file.endswith('.xml')]
+
+dataset=[]
+for xml_id in file_list_py:
+    filename = r"C:\VScode" + str(xml_id)
+    output_filename = "p_{}".format(xml_id)
+    with open(filename, "r", encoding='EUC-KR') as f:
+        soup = BeautifulSoup(f, "lxml")
+        data1 = soup.select('KR_Name')
+        data2 = soup.select('KR_ORGName')
+        dataset.append([data1[0], data2[1]])
+    with open(output_filename, "w", encoding="EUC-KR") as f:
+        for data in dataset:
+            f.write("{},{}".format(str(data[0])[1:-1], str(data[1])[1:-1]).replace(",", "").replace(" ", ""))
+    del dataset[0]
+
+
+
+
+
