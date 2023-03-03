@@ -1,0 +1,25 @@
+<dataConfig>
+  <dataSource driver="oracle.jdbc.OracleDriver" url="jdbc:oracle:thin:@//localhost:1521/orcl" 
+  user="abc" password="1234"/>
+  <document>
+    <entity name="users" query="select * from XML_LIST">
+	  <field column="NO" name="NO"/>
+	  <field column="KR_IPCInformation" name="KR_IPCInformation"/>
+      <field column="KR_CPCInformation" name="KR_CPCInformation"/>
+	  <field column="KR_OpenNumber" name="KR_OpenNumber"/>
+      <field column="KR_OpenDate" name="KR_OpenDate"/>
+	  <field column="KR_ApplicationNumber" name="KR_ApplicationNumber"/>
+      <field column="KR_ApplicationDate" name="KR_ApplicationDate"/>
+	  <field column="KR_ApplicantInformation" name="KR_ApplicantInformation"/>
+      <field column="KR_Inventor" name="KR_Inventor"/>
+	  <field column="KR_Agent" name="KR_Agent"/>
+      <field column="invention_title" name="invention_title"/>
+	  <field column="technical_field" name="technical_field"/>
+      <field column="background_art" name="background_art"/>
+	  <field column="claim_text" name="claim_text"/>
+      <field column="summary" name="summary"/>
+    </entity>
+  </document>
+  
+</dataConfig>
+
