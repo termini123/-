@@ -1,0 +1,30 @@
+KR_IPCInformation 		IPC정보
+KR_CPCInformation		CPC정보
+KR_OpenNumber		공개번호
+KR_OpenDate		공개일자
+KR_ApplicationNumber	출원번호
+KR_ApplicationDate	출원일자
+KR_ApplicantInformation	출원인
+KR_Inventor		발명자
+KR_Agent			대리인
+invention_title		특허명칭
+technical_field		기술분야설명
+background_art		배경기술
+claim_text		청구항
+summary			요약
+
+<field name="NO" type="string" indexed="true" stored="true"/>
+<field name="KR_IPCInformation" type="string" indexed="true" stored="true"/>
+<field name="KR_CPCInformation" type="string" indexed="true" stored="true"/>
+<field name="KR_OpenNumber" type="string" indexed="true" stored="true"/>
+<field name="KR_OpenDate" type="string" indexed="true" stored="true"/>
+<field name="KR_ApplicationNumber" type="string" indexed="true" stored="true"/>
+<field name="KR_ApplicationDate" type="string" indexed="true" stored="true"/>
+<field name="KR_ApplicantInformation" type="text_ko" indexed="true" stored="true"/>
+<field name="KR_Inventor" type="text_ko" indexed="true" stored="true"/>
+<field name="KR_Agent" type="text_ko" indexed="true" stored="true"/>
+<field name="invention_title" type="text_ko" indexed="true" stored="true"/>
+<field name="technical_field" type="text_ko" indexed="true" stored="true"/>
+<field name="background_art" type="text_ko" indexed="true" stored="true"/>
+<field name="claim_text" type="text_ko" indexed="true" stored="true"/>
+<field name="summary" type="text_ko" indexed="true" stored="true"/>

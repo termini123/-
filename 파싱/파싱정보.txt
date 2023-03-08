@@ -1,0 +1,60 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+ 
+ 
+#항목 parsing 함수작성하기
+def parse():
+    try:
+        KR_IPCInformation = item.find("KR_IPCInformation").get_text()
+        KR_CPCInformation = item.find("KR_CPCInformation").get_text()
+        KR_OpenNumber = item.find("KR_OpenNumber").get_text()
+        KR_OpenDate = item.find("KR_OpenDate").get_text()
+        KR_ApplicationNumber = item.find("KR_ApplicationNumber").get_text()
+        KR_ApplicationDate = item.find("KR_ApplicationDate").get_text()
+        KR_ApplicantInformation = item.find("KR_ApplicantInformation").get_text()
+        KR_InventorInformation = item.find("KR_InventorInformation").get_text()
+        KR_AgentInformation = item.find("KR_AgentInformation").get_text()
+        invention_title = item.find("invention-title").get_text()
+        technical_field = item.find("technical-field").get_text()
+        background_art = item.find("background-art").get_text()
+        claim_text = item.find("claim-text").get_text()
+        summary = item.find("summary").get_text()
+        return {
+            "IPC정보":KR_IPCInformation,
+            "CPC정보":KR_CPCInformation,
+            "공개번호":KR_OpenNumber,
+            "공개일자":KR_OpenDate,
+            "출원번호":KR_ApplicationNumber,
+            "출원일자":KR_ApplicationDate,
+            "출원인정보":KR_ApplicantInformation,
+            "발명자정보":KR_InventorInformation,
+            "대리인정보":KR_AgentInformation,
+            "발명이름":invention_title,
+            "명세서-기술분야":technical_field,
+            "명세서-배경기술":background_art,
+            "청구항":claim_text,
+            "요약":summary
+        }
+    except AttributeError as e:
+        return {
+        }
+ 
+#parsing 하기
+result = requests.get(url+serviceKey+"&pageNo=1"+numOfRows+StartCreateDt+endCreateDt)
+soup = BeautifulSoup(result.text,'lxml_xml')
+items = soup.find_all("item")
+ 
+row = []
+for item in items:
+    row.append(parse())
+ 
+#pandas 데이터프레임에 넣기
+df = pd.DataFrame(row)
+ 
+#csv 파일로 저장하기
+df.to_csv("코로나20210101_20210630.csv",mode='w',)
+ 
+#csv 파일 불러오기        
+data = pd.read_csv("코로나20210101_20210630.csv",index_col=0)
+df2 = pd.DataFrame(data)
