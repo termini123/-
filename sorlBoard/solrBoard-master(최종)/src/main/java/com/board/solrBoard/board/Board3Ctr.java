@@ -75,6 +75,7 @@ public class Board3Ctr {
 		if (brdno != null) {
 			getOneboard(brdno, modelMap);
 		}
+
 		return "board3/boardForm";
 	}
 

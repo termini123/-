@@ -20,11 +20,17 @@ a {
   font-family: 'Nanum Gothic', sans-serif;
 }
 
+a:visited {
+  color : purple;
+}
+
 body {
 	display: block;
-    width: 700px;
+    width: 800px;
     margin-left: auto;
     margin-right: auto;
+    padding: 100px;
+    
     font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -55,6 +61,10 @@ td {
 h2 {
 font-family: 'Nanum Gothic', sans-serif;
 }
+span{
+font-size:40px;
+font-weight:bold;
+}
 </style>
 
 <title>board3</title>
@@ -65,7 +75,7 @@ font-family: 'Nanum Gothic', sans-serif;
 </script>
 </head>
 <body>
- <h2><img src="resources/image/Visual_logo_negative.png" alt="None"> 특허정보검색서비스</h2>
+ <h2> <a href = "http://localhost:8080/solrBoard/board3List"><span>COMPASS</span></a> 특허정보검색서비스</h2>
 	<table class="table table-striped table-bordered">		
 		<thead>
 			<tr>
